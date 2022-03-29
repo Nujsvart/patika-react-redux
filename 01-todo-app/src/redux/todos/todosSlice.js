@@ -31,7 +31,13 @@ export const todosSlice = createSlice({
       },
     ],
   },
-  reducers: {},
+  reducers: {
+    addTodo: (state, action) => {
+      state.items.push(action.payload);
+    },
+  },
 });
+
+export const todoActions = todosSlice.actions;
 
 export default todosSlice.reducer;
