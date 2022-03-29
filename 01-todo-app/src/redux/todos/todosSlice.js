@@ -35,6 +35,10 @@ export const todosSlice = createSlice({
     addTodo: (state, action) => {
       state.items.push(action.payload);
     },
+    toggle: (state, action) => {
+      const item = state.items.find(item => item.id === action.payload);
+      item.completed = !item.completed;
+    },
   },
 });
 
