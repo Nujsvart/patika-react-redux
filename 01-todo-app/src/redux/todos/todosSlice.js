@@ -30,6 +30,7 @@ export const todosSlice = createSlice({
         completed: false,
       },
     ],
+    activeFilter: "all",
   },
   reducers: {
     addTodo: (state, action) => {
@@ -39,9 +40,15 @@ export const todosSlice = createSlice({
       const item = state.items.find(item => item.id === action.payload);
       item.completed = !item.completed;
     },
-    deleteTodo: (state, action) => { 
+    deleteTodo: (state, action) => {
       state.items = state.items.filter(item => item.id !== action.payload);
-    }
+    },
+    changeActiveFilter: (state, action) => {
+      state.activeFilter = action.payload;
+    },
+    clearCompleted: state => {
+      state.items = state.items.filter(item => !item.completed);
+    },
   },
 });
 
