@@ -39,6 +39,9 @@ export const todosSlice = createSlice({
       const item = state.items.find(item => item.id === action.payload);
       item.completed = !item.completed;
     },
+    deleteTodo: (state, action) => { 
+      state.items = state.items.filter(item => item.id !== action.payload);
+    }
   },
 });
 

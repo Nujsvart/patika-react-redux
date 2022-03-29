@@ -7,9 +7,7 @@ const TodoList = () => {
   const dispatch = useDispatch();
   const items = useSelector(state => state.todos.items);
 
-  const handleToggle = id => {
-    dispatch(todoActions.toggle(id));
-  };
+
   console.log(items);
   return (
     <ul className="todo-list">
@@ -20,10 +18,10 @@ const TodoList = () => {
               className="toggle"
               type="checkbox"
               checked={item.completed}
-              onClick={() => handleToggle(item.id)}
+              onClick={() => dispatch(todoActions.toggle(item.id))}
             />
             <label>{item.title}</label>
-            <button className="destroy"></button>
+            <button className="destroy" onClick={() => dispatch(todoActions.deleteTodo(item.id))}></button>
           </div>
         </li>
       ))}
