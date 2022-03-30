@@ -9,6 +9,7 @@ const Form = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (!title) return;
     dispatch(todoActions.addTodo({ id: Date.now(), title, completed: false }));
     setTitle("");
   };

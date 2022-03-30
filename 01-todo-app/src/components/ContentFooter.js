@@ -1,10 +1,10 @@
 import React from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { todoActions } from "../redux/todos/todosSlice";
+import { todoActions, selectTodos } from "../redux/todos/todosSlice";
 
 const ContentFooter = () => {
-  const items = useSelector(state => state.todos.items);
+  const items = useSelector(selectTodos);
   const dispatch = useDispatch();
 
   const itemsLeft = items.filter(item => !item.completed).length;
