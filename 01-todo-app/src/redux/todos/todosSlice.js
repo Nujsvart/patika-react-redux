@@ -33,8 +33,19 @@ export const todosSlice = createSlice({
     activeFilter: "all",
   },
   reducers: {
-    addTodo: (state, action) => {
-      state.items.push(action.payload);
+    addTodo: {
+      reducer: (state, action) => {
+        state.items.push(action.payload);
+      },
+      prepare: ({title}) => {
+        return {
+          payload: {
+            id: Date.now(),
+            completed: false,
+            title
+          },
+        };
+      }
     },
     toggle: (state, action) => {
       const item = state.items.find(item => item.id === action.payload);
