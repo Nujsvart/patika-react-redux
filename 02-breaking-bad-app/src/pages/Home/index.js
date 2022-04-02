@@ -12,6 +12,8 @@ const Home = () => {
   const characters = useSelector(state => state.characters.items);
   const isLoading = useSelector(state => state.characters.isLoading);
   const error = useSelector(state => state.characters.error);
+  const nextPage = useSelector(state => state.characters.page);
+  const hasNextPage = useSelector(state => state.characters.hasNextPage);
 
   const dispatch = useDispatch();
   console.log(characters);
@@ -19,10 +21,6 @@ const Home = () => {
   useEffect(() => {
     dispatch(fetchCharacters());
   }, [dispatch]);
-
-  if (isLoading) {
-    return <Loading />;
-  }
 
   if (error) {
     return <Error message={error} />;
@@ -46,6 +44,16 @@ const Home = () => {
           </div>
         ))}
       </Masonry>
+
+      <div style={{ padding: "20px 0px 40px 0px", textAlign: "center" }}>
+        {isLoading && <Loading />}
+        {hasNextPage && !isLoading && (
+          <button onClick={() => dispatch(fetchCharacters(nextPage))}>
+            Load More ({nextPage})
+          </button>
+        )}
+        {!hasNextPage && !isLoading && <div>No more characters</div>}
+      </div>
     </div>
   );
 };
