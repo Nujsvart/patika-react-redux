@@ -1,0 +1,18 @@
+nav {
+    background-color: antiquewhite;
+}
+
+nav ul {
+    list-style: none;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav ul li {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
